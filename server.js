@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
+//const { Socket } = require("socket.io");
+const http = require('http').Server(app)
+const io = require('socket.io')(http);
 
 
 
@@ -24,6 +27,6 @@ app.post('/messages',(req,res)=>{
 })
 
 
-var server = app.listen(3000, () => {
+var server = http.listen(3000, () => {
     console.log("server is listening on port",server.address().port);
 });
