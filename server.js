@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
-//const { Socket } = require("socket.io");
 const http = require('http').Server(app)
 const io = require('socket.io')(http);
 
@@ -23,6 +22,7 @@ app.get('/messages',(req,res)=>{
 
 app.post('/messages',(req,res)=>{
     messages.push(req.body);
+    io.emit('message',req.body);
     res.sendStatus(200)
 })
 
